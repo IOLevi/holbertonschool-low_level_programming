@@ -1,0 +1,2 @@
+#!/bin/bash
+gcc -c $CFILE > #need to figure out how to rename a file from main.c to main.o inline 
