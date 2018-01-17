@@ -2,6 +2,8 @@
 
 /**
  * main - prints a short message
+ *
+ * Return: 0
  */
 int main(void)
 {
