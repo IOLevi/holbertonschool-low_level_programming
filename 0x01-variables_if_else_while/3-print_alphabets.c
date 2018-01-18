@@ -7,13 +7,14 @@
  */
 int main(void)
 {
-	char a[] = {"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"};
-	unsigned int i;
+	int i;
 
-	for (i = 0; i < sizeof(a); i++)
-	{
-		putchar(a[i]);
-	}
+	for (i = 'a'; i <= 'z'; i++)
+		putchar(i);
+
+	for (i = 'A'; i <= 'Z'; i++)
+		putchar(i);
+
 	putchar('\n');
 	return (0);
 }
