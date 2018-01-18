@@ -9,11 +9,12 @@ int main(void)
 {
 	int i;
 
-	for (i = 97; i < 123; i++)
+	for (i = 'a'; i <= 'z'; i++)
 	{
-		if (i == 113 || i == 101)
-			continue;
-		putchar(i);
+		if (!(i == 'q' || i == 'e'))
+			putchar(i);
 	}
 	putchar('\n');
+
+	return (0);
 }
