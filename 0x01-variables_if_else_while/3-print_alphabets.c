@@ -7,9 +7,10 @@
  */
 int main(void)
 {
-	char a[]= {"abcdefghijklmnopqrstuvwxzyABCDEFGHIJKLMNOPQRSTUVWXYZ"};
+	char a[] = {"abcdefghijklmnopqrstuvwxzyABCDEFGHIJKLMNOPQRSTUVWXYZ"};
 	int i;
-	for (i = 0; i < sizeof(a);i++)
+
+	for (i = 0; i < sizeof(a); i++)
 	{
 		putchar(a[i]);
 	}
