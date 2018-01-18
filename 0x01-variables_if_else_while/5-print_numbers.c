@@ -3,7 +3,7 @@
 /**
  * main - prints single digits from 0-9
  *
- *Return: 0
+ * Return: 0
  */
 int main(void)
 {
@@ -11,7 +11,7 @@ int main(void)
 
 	while (i < 10)
 	{
-		printf("%d", i);
+		printf("%d", i++);
 	}
 
 	putchar('\n');
