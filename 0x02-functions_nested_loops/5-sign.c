@@ -1,10 +1,10 @@
-#include <stdio.h>
+#include "holberton.h"
 
 /**
- * print_sign prints the sign of a number
+ * print_sign -  prints the sign of a number
+ * @n: number to be eval'd
  *
- * Return: returns 1 and prints + if n is > 0; 0 and prints 0 if n > 0;
- * -1 and prints - if n is less than zero
+ * Return: 1 if pos; 0 if 0; -1 if negative
  */
 int print_sign(int n)
 {
