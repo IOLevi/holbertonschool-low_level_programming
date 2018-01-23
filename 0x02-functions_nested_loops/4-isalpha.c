@@ -1,9 +1,10 @@
-#include <stdio.h>
+#include "holberton.h"
 
 /**
  * _isalpha - checks for alphabetic character
+ * @c: char to be checked
  *
- * Returns: 1 if c is a letter, lower or upper. Returns 0 otherwise. 
+ * Return: 1 if c is a letter, lower or upper. Returns 0 otherwise.
  */
 int _isalpha(int c)
 {
