@@ -12,6 +12,7 @@ void times_table(void)
 		for (c = 0; c < 10; c++)
 		{
 			p = r * c;
+
 			if (p < 10)
 			{
 				_putchar(p + '0');
@@ -21,14 +22,14 @@ void times_table(void)
 				_putchar(p / 10 + '0');
 				_putchar(p % 10 + '0');
 			}
-		     	if (c == 9)
-		       	{
+			if (c == 9)
+			{
 				_putchar('\n');
 			}
-		       	else
-	       		{
-       				_putchar(',');
-				if ((p < 5) && (r > 4))
+			else
+			{
+				_putchar(',');
+				if (((c + 1) * r) < 10)
 				{
 					_putchar(' ');
 					_putchar(' ');
@@ -37,12 +38,10 @@ void times_table(void)
 				{
 					_putchar(' ');
 				}
-       			}
-       		}
+			}
+		}
 
-       	}
-
-
+	}
 
 
 }
