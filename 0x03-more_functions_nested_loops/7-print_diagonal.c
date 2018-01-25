@@ -1,4 +1,4 @@
-#include “holberton.h”
+#include "holberton.h"
 
 /**
  * print_diagonal - draws a diagonal on the terminal
@@ -21,6 +21,7 @@ void print_diagonal(int n)
 			_putchar(' ');
 		}
 		_putchar('\\');
+		_putchar('\n');
 	}
 
 }
