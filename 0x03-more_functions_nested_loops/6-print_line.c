@@ -1,7 +1,7 @@
-#include “holberton.h”
+#include "holberton.h"
 
 /**
- * print_line -draws a straight line in the terminal
+ * print_line - draws a straight line in the terminal
  * @n: number of times to print _
  */
 void print_line(int n)
@@ -11,7 +11,7 @@ void print_line(int n)
 	if (n < 1)
 	{
 		_putchar('\n');
-		return;
+		return (0);
 	}
 
 	for (i = 0; i < n; i++)
