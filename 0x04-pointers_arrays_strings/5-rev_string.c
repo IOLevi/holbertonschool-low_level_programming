@@ -1,4 +1,5 @@
 #include "holberton.h"
+#include "2-strlen.c"
 
 /**
  * rev_string - reverses a string
@@ -6,21 +7,15 @@
  */
 void rev_string(char *s)
 {
+	int l = _strlen(s);
 	int i;
-	int length = 0;
-	int j = 0;
-	char copy[10];
+	int pivot = l / 2;
+	char swap;
 
-	for (i = 0; s[i] != '\0'; i++)
-		length++;
-
-	for (i = 0; i < length; i++)
+	for (i = 0; i < pivot; i++)
 	{
-		copy[i] = s[i];
-	}
-
-	for (i = 0, j = length - 1; i < length; i++, j--)
-	{
-		s[i] = copy[j];
+		swap = s[i];
+		s[i] = s[l - 1 - i];
+		s[l - 1 - i] = swap;
 	}
 }
