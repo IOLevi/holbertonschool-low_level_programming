@@ -9,8 +9,7 @@ void rev_string(char *s)
 	int i;
 	int length = 0;
 	int j = 0;
-	char copy[200] = "this is an arbitrary string and i am doing this\
-because i have no idea how the checked works and this is ridic.";
+	char copy[200];
 
 	for (i = 0; s[i] != '\0'; i++)
 		length++;
