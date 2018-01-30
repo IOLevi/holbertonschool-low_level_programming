@@ -1,4 +1,5 @@
 #include "holberton.h"
+#include <stdio.h>
 
 /**
  * reset_to_98 - takes an int as parameter and updates to 98
