@@ -2,7 +2,7 @@
 
 /**
  * puts_half - prints second half a string followed by a newline
- * @str: string to be manipulated
+ * @str: string to be manipulated (length_of_the_string - 1) / 2
  */
 void puts_half(char *str)
 {
