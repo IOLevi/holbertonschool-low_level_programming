@@ -1,7 +1,7 @@
 #include "holberton.h"
 
 /**
- * *string_troupper - changes all lowercase letters of a string to uppercase
+ * *string_toupper - changes all lowercase letters of a string to uppercase
  * @n: char pointer
  *
  * Return: char pointer
@@ -13,10 +13,10 @@ char *string_toupper(char *n)
 	while (n[len] != '\0')
 		len++;
 
-        for (i = 0; i < len; i++)
+	for (i = 0; i < len; i++)
 	{
 		if (n[i] >= 'a' && n[i] <= 'z')
-			n[i] += 38;
+			n[i] -= 32;
 	}
 
 	return (n);
