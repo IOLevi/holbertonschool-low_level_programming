@@ -14,7 +14,7 @@ char *cap_string(char *s)
 		len++;
 
 	if (s[0] >= 'a' && s[0] <= 'z')
-		s[0] += 38;
+		s[0] -= 32;
 
 	for (i = 1; i < len; i++)
 	{
@@ -34,8 +34,9 @@ char *cap_string(char *s)
 		case ')':
 		case '{':
 		case '}':
-			if (s[i+1] >= 'a' && <= 'z') /*look at the one before not the one after*/
-				s[i + 1] += 38;
+			if (s[i + 1] >= 'a' && <= 'z')
+				s[i + 1] -= 32;
+			break;
 		default:
 			break;
 		}
