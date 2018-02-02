@@ -8,7 +8,7 @@
  */
 char *cap_string(char *s)
 {
-	int len = 0; i;
+	int len = 0, i;
 
 	while (s[len] != '\0')
 		len++;
@@ -27,14 +27,13 @@ char *cap_string(char *s)
 		case ';':
 		case '.':
 		case '!':
-		case '?':
 		case '"':
 		case '?':
 		case '(':
 		case ')':
 		case '{':
 		case '}':
-			if (s[i + 1] >= 'a' && <= 'z')
+			if (s[i + 1] >= 'a' && s[i + 1] <= 'z')
 				s[i + 1] -= 32;
 			break;
 		default:
