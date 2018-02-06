@@ -11,7 +11,7 @@ unsigned int _strspn(char *s, char *accept)
 {
 	int i, j;
 	int slen = 0, acceptlen = 0;
-	int counter = 0;
+	unsigned int counter = 0;
 
 	while (s[slen] != '\0')
 		slen++;
