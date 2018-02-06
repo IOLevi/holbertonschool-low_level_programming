@@ -22,21 +22,14 @@ char *_strpbrk(char *s, char *accept)
 	while (accept[acceptlen] != '\0')
 		acceptlen++;
 
-	for (i = 0; i <= acceptlen; i++)
+	for (i = 0; i < slen; i++)
 	{
-		for (j = 0; j <= slen; j++)
+		for (j = 0; j < acceptlen; j++)
 		{
-			if (s[j] == accept[i])
-			{
-				if (*p == NULL)
-					p = (s + j);
-				if ((s + j) < p)
-					p = (s + j);
-			}
-
+			if (s[i] == accept[j])
+				return (s + i);
 		}
 	}
-
-	return (p);
+	return (0);
 
 }
