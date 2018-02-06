@@ -9,10 +9,12 @@
  */
 char *_strpbrk(char *s, char *accept)
 {
-	char *p = 0;
+	char *p;
 	int slen = 0;
 	int acceptlen = 0;
 	int i, j;
+
+	*p = NULL;
 
 	while (s[slen] != '\0')
 		slen++;
@@ -26,7 +28,7 @@ char *_strpbrk(char *s, char *accept)
 		{
 			if (s[j] == accept[i])
 			{
-				if (p == 0)
+				if (*p == NULL)
 					p = (s + j);
 				if ((s + j) < p)
 					p = (s + j);
@@ -34,7 +36,6 @@ char *_strpbrk(char *s, char *accept)
 
 		}
 	}
-
 
 	return (p);
 
