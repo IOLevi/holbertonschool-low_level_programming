@@ -9,12 +9,9 @@
  */
 char *_strpbrk(char *s, char *accept)
 {
-	char *p;
 	int slen = 0;
 	int acceptlen = 0;
 	int i, j;
-
-	*p = NULL;
 
 	while (s[slen] != '\0')
 		slen++;
