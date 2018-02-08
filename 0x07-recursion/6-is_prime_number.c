@@ -1,12 +1,12 @@
 #include "holberton.h"
 
 /**
- * is_prime_number - determine if argument is a prime
+ * isprime - determins if argument is a prime
  * @n: number to check
+ * @x: trial divide
  *
- * Return: 1 if prime; 0 if not
+ * Return: 1 if prime, zero if not
  */
-
 int isprime(int n, int x)
 {
 
@@ -20,6 +20,12 @@ int isprime(int n, int x)
 
 }
 
+/**
+ * is_prime_number - determine if argument is a prime
+ * @n: number to check
+ *
+ * Return: 1 if prime; 0 if not
+ */
 int is_prime_number(int n)
 {
 
