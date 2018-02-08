@@ -9,7 +9,7 @@
  */
 int _sqrt(int n, int x)
 {
-	if (n / (x * x) == 1)
+	if (x * x == n)
 		return (x);
 
 	if (x > n / x)
