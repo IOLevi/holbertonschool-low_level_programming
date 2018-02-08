@@ -9,13 +9,13 @@
  */
 int _sqrt(int n, int x)
 {
-	if (n / (x ** 2) == 1)
+	if (n / (x * x) == 1)
 		return (x);
 
 	if (x > n / x)
 		return (-1);
 
-	return (sqrt(n, x + 1));
+	return (_sqrt(n, x + 1));
 
 }
 
