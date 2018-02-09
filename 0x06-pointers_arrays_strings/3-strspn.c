@@ -19,15 +19,18 @@ unsigned int _strspn(char *s, char *accept)
 	while (accept[acceptlen] != '\0')
 		acceptlen++;
 
-	for (i = 0; i <= acceptlen; i++)
+	for (i = 0; i < slen; i++)
 	{
-		for (j = 0; j <= slen; j++)
+		for (j = 0; j < acceptlen; j++)
 		{
-			if (s[j] == accept[i])
+			if (s[i] == accept[j])
 			{
 				counter++;
 				break;
 			}
+
+			if (j == acceptlen - 1 && s[i] != accept[j])
+				return (counter);
 		}
 	}
 
