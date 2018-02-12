@@ -1,15 +1,14 @@
 #include <stdio.h>
-#ifdef UNUSED
-#elif defined(__GNUC__)
-# define UNUSED(x) UNUSED_ ## x __attribute__((unused))
-#elif defined(__LCLINT__)
-# define UNUSED(x) /*@unused@*/ x
-#else
-# define UNUSED(x) x
-#endif
+#include <stdlib.h>
 
-void dcc_mon_siginfo_handler(int UNUSED(whatsig));
-int main(int argc, char *argv[])
+/**
+ * main - prints something
+ * @argc: number of args
+ * @argv: array of char pointers
+ *
+ * Return: 0
+ */
+int main(int __attribute__ ((unused) argc, char *argv[])
 {
 	printf("%d\n", argc - 1);
 
