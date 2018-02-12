@@ -1,13 +1,12 @@
 #include <stdio.h>
-#ifdef UNUSED
-#elif defined(__GNUC__)
-# define UNUSED(x) UNUSED_ ## x __attribute__((unused))
-#elif defined(__LCLINT__)
-# define UNUSED(x) /*@unused@*/ x
-#else
-# define UNUSED(x) x
-#endif
-void dcc_mon_siginfo_handler(int UNUSED(whatsig));
+#include <stdlib.h>
+
+/**
+ * levAtoi - does atoi but returns -1 if has a letter
+ * @str: string to check
+ *
+ * Return: -1 if failure; otherwise the integer value
+ */
 int levAtoi(char *str)
 {
 	int i;
@@ -23,8 +22,14 @@ int levAtoi(char *str)
 	return (res);
 }
 
-
-int main(int argc, char *argv[])
+/**
+ * main - adds command line arguments
+ * @argc: number of arguments
+ * @argv: double pointer
+ *
+ * Return: the sum
+ */
+int main(int __attribute__ ((unused)) argc, char *argv[])
 {
 	int sum = 0;
 	int i;
@@ -37,10 +42,10 @@ int main(int argc, char *argv[])
 
 	for (i = 1; i < argc; i++)
 	{
-		if (levAtoi(argv[i]) == -1) //this is kinda fucked
+		if (levAtoi(argv[i]) == -1)
 		{
-		     printf("Error\n");
-		     return (1);
+			printf("Error\n");
+			return (1);
 		}
 
 		sum += levAtoi(argv[i]);
