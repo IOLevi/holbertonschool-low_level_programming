@@ -8,7 +8,8 @@
  *
  * Return: 0 or 1
  */
-int main(int __attribute__ ((unused)) argc, char *argv[] __attribute__ ((unused)))
+int main(int __attribute__ ((unused)) argc, char
+*argv[] __attribute__ ((unused)))
 {
 
 	if (argc != 3)
