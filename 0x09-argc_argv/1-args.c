@@ -8,7 +8,8 @@
  *
  * Return: 0
  */
-int main(int __attribute__ ((unused)) argc, char __attribute__ ((unused)) *argv[])
+int main(int __attribute__ ((unused)) argc, char
+__attribute__ ((unused)) *argv[])
 {
 	printf("%d\n", argc - 1);
 
