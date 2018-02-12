@@ -8,7 +8,7 @@
  *
  * Return: 0 or 1
  */
-int main(int __attribute__ ((unused)) argc, char *argv[])
+int main(int __attribute__ ((unused)) argc, char *argv[] __attribute__ ((unused)))
 {
 
 	if (argc != 3)
@@ -17,7 +17,7 @@ int main(int __attribute__ ((unused)) argc, char *argv[])
 		return (1);
 	}
 
-	printf("%d", atoi(argv[1]) * atoi(argv[2]));
+	printf("%d\n", atoi(argv[1]) * atoi(argv[2]));
 
 	return (0);
 
