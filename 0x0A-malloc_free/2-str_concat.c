@@ -14,11 +14,6 @@ char *str_concat(char *s1, char *s2)
 	char *p;
 	int i, j;
 
-	if (s1 == 0)
-		*s1 = "";
-
-	if (s2 == 0)
-		*s2 = "";
 
 	while (s1[lens1] != 0)
 		lens1++;
