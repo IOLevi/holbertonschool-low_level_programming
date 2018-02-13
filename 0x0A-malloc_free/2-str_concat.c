@@ -14,13 +14,19 @@ char *str_concat(char *s1, char *s2)
 	char *p;
 	int i, j;
 
-	while(s1[lens1] != 0)
+	if (s1 == 0)
+		*s1 = "";
+
+	if (s2 == 0)
+		*s2 = "";
+
+	while (s1[lens1] != 0)
 		lens1++;
 
-	while(s2[lens2] != 0)
+	while (s2[lens2] != 0)
 		lens2++;
 
-	p = (char*)malloc(sizeof(char) * (lens1 + lens2) + 1);
+	p = (char *)malloc(sizeof(char) * (lens1 + lens2) + 1);
 
 	if (!p)
 		return (NULL);
