@@ -16,10 +16,10 @@ char *argstostr(int ac, char **av)
 	int i, j, k = 0;
 	int height = 0;
 
-	if(ac == 0 || av == NULL)
+	if (ac == 0 || av == NULL)
 		return (NULL);
 
-	while(av[height])
+	while (av[height])
 		height++;
 
 	for (i = 0; i < height; i++)
@@ -28,7 +28,7 @@ char *argstostr(int ac, char **av)
 
 	size += height;
 
-	p = (char*)malloc(sizeof(char) * size);
+	p = (char *)malloc(sizeof(char) * size);
 
 	if (!p)
 		return (NULL);
