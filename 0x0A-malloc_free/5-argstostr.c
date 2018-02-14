@@ -12,15 +12,12 @@ char *argstostr(int ac, char **av)
 {
 
 	char *p;
-	int size;
+	int size = 0;
 	int i, j, k = 0;
 	int height = 0;
 
 	if(ac == 0 || av == NULL)
 		return (NULL);
-
-	//p is a char array. It needs to be as long as string in in the av array of strings (maybe plus one)
-	//i could loop through the av strings to get their total size
 
 	while(av[height])
 		height++;
