@@ -2,7 +2,7 @@
 #include "holberton.h"
 
 /**
- * *argtostr - concatnates all the arguments of your program
+ * *argstostr - concatnates all the arguments of your program
  * @ac: number of arguments
  * @av: double pointer, arguments
  *
@@ -14,26 +14,22 @@ char *argstostr(int ac, char **av)
 	char *p;
 	int size = 0;
 	int i, j, k = 0;
-	int height = 0;
 
 	if (ac == 0 || av == NULL)
 		return (NULL);
 
-	while (av[height])
-		height++;
-
-	for (i = 0; i < height; i++)
+	for (i = 0; i < ac; i++)
 		for (j = 0; av[i][j] != 0; j++)
 			size++;
 
-	size += height;
+	size += ac;
 
-	p = (char *)malloc(sizeof(char) * size);
+	p = (char *)malloc(sizeof(char) * size + 1);
 
 	if (!p)
 		return (NULL);
 
-	for (i = 0; i < height; i++)
+	for (i = 0; i < ac; i++)
 	{
 		for (j = 0; av[i][j] != 0; j++)
 		{
@@ -41,6 +37,7 @@ char *argstostr(int ac, char **av)
 		}
 		p[k++] = '\n';
 	}
+	p[k] = '\0';
 
 	return (p);
 
