@@ -26,7 +26,12 @@ char *argstostr(int ac, char **av)
 		for (j = 0; av[i][j] != 0; j++)
 			size++;
 
-	p = (char*)malloc(sizeof(char) * size + 1);
+	size += height;
+
+	p = (char*)malloc(sizeof(char) * size);
+
+	if (!p)
+		return (NULL);
 
 	for (i = 0; i < height; i++)
 	{
