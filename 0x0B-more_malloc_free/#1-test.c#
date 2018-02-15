@@ -1,0 +1,10 @@
+#include <stdlib.h>                                                                                                                                    
+                                                                                                                                                       
+/**                                                                                                                                                    
+ * *string_nconcat - concatenates two strings                                                                                                          
+ * @s1: first full string                                                                                                                              
+ * @s2: second string to consist of n bytes                                                                                                            
+ * @n: number of chars to write from s2                                                                                                                
+ *                                                                                                                                                     
+ * Return: pointer to new null terminated string                                                                                                       
+ */
