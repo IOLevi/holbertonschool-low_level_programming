@@ -8,15 +8,14 @@
  */
 void *malloc_checked(unsigned int b)
 {
-	/* what if unsigned int b is empty */
 
 	int *p;
 
-	p = malloc(sizeof(int) * b);
+	p = malloc(b);
 
 	if (!p)
 		exit(98);
-	*p = b;
+
 	return (p);
 
 }
