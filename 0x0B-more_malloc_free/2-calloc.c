@@ -2,7 +2,7 @@
 #include "holberton.h"
 
 /**
- * void *_calloc - duplicate calloc functionality
+ * *_calloc - duplicate calloc functionality
  * @nmemb: number of elements
  * @size: size of a single element
  *
