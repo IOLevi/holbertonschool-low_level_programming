@@ -1,4 +1,7 @@
 #include "dog.h"
+#include <stdlib.h>
+#include <stdio.h>
+
 /**
  * *new_dog - creates a new doge
  * @name: can haz name
@@ -10,12 +13,14 @@
 dog_t *new_dog(char *name, float age, char *owner)
 {
 	dog_t *doge;
-        char *newName;
+	char *newName;
 	char *newOwner;
 	int lenname = 0;
 	int lenowner = 0;
+	int i;
 
-	if(doge = malloc(sizeof(dog_t)) == null)
+	doge = malloc(sizeof(struct dog));
+	if (!doge)
 		return (NULL);
 
 	while (owner[lenowner] != 0)
@@ -40,7 +45,7 @@ dog_t *new_dog(char *name, float age, char *owner)
 		newName[i] = name[i];
 	newName[i] = '\0';
 
-        doge->name = newName;
+	doge->name = newName;
 	doge->age = age;
 	doge->owner = newOwner;
 
