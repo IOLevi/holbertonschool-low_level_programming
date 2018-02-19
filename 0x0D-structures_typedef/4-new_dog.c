@@ -19,6 +19,13 @@ dog_t *new_dog(char *name, float age, char *owner)
 	int lenowner = 0;
 	int i;
 
+	if (name == NULL)
+		return (NULL);
+	if (owner == NULL)
+		return (NULL);
+	if (age <= 0)
+		return (NULL);
+
 	doge = malloc(sizeof(struct dog));
 	if (!doge)
 		return (NULL);
