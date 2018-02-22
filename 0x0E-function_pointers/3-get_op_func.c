@@ -5,7 +5,7 @@
 /**
  * get_op_func - selects the right functions based on the operand
  * @s: operand used to select
- * @
+ * Return: a function pointer to one of 5 functions
  */
 int (*get_op_func(char *s))(int, int)
 {
@@ -18,14 +18,12 @@ int (*get_op_func(char *s))(int, int)
 		{NULL, NULL}
 	};
 	int i;
-/* op_t has fields .f <function pointer>  and .op <a char pointer>
-does it return a function pointers */
-	
+
 	i = 0;
 	while (ops[i].op != NULL)
 	{
 		if (*(ops[i].op) == *s)
-		{	
+		{
 			return (ops[i].f);
 
 		}
