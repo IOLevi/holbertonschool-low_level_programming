@@ -35,5 +35,5 @@ int main(int argc, char *argv[])
 	}
 	result = fun(a, b);
 	printf("%d\n", result);
-	return (1);
+	return (0);
 }
