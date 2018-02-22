@@ -2,9 +2,10 @@
 #include <stdio.h>
 #include "3-calc.h"
 /**
- * main - main file
+ * main - program which performs simple operations
  * @argc: number of args
  * @argv: array of strings passed to program
+ * Return: 1
  */
 int main(int argc, char *argv[])
 {
