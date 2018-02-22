@@ -6,7 +6,7 @@
  * @argc: number of args
  * @argv: array of strings passed to program
  */
-void main(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
 	int a, b, result;
 	int (*fun)(int, int);
@@ -34,5 +34,5 @@ void main(int argc, char *argv[])
 	}
 	result = fun(a, b);
 	printf("%d\n", result);
-
+	return (1);
 }
