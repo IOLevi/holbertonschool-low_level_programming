@@ -4,7 +4,6 @@
 /**
  * sum_them_all - sums all the ints in variadic function
  * @n: number of arguments to sum
- * @...: variadic list
  * Return: the sum
  */
 int sum_them_all(const unsigned int n, ...)
