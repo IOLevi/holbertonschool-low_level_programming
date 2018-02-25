@@ -44,7 +44,7 @@ void _printchar(va_list args)
 	printf("%c", va_arg(args, int));
 }
 /**
- * _printall - prints a number
+ * print_all - prints a number
  * @format: formatting string
  */
 void print_all(const char * const format, ...)
