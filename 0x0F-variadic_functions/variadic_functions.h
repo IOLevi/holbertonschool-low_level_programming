@@ -11,7 +11,8 @@ void print_all(const char * const format, ...);
  * @s: test
  * @f: test
  */
-typedef struct test{
+typedef struct test
+{
 	char *s;
 	void (*f)(va_list);
 } Match;
