@@ -1,6 +1,7 @@
+#include <stdarg.h>
 #include <stdio.h>
-#include <stdlib.h>
 #include "variadic_functions.h"
+
 /**
  * _printint - prints a number
  * @args: a va_list
@@ -60,10 +61,8 @@ void print_all(const char * const format, ...)
 	};
 
 	va_start(args, format);
-	if (!format)
-		return;
 
-	while (format[i] != 0)
+	while (format != NULL && format[i] != 0)
 	{
 		j = 0;
 		while (match[j].f != NULL)
