@@ -2,17 +2,26 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "variadic_functions.h"
-
+/**
+ * _printint - prints a number
+ * @args: a va_list
+ */
 void _printint(va_list args)
 {
 	printf("%d", va_arg(args, int));
 }
-
+/**
+ * _printfloat - prints a number
+ * @args: a va_list
+ */
 void _printfloat(va_list args)
 {
 	printf("%f", va_arg(args, double));
 }
-
+/**
+ * _printstring - prints a number
+ * @args: a va_list
+ */
 void _printstring(va_list args)
 {
 	char *s;
@@ -26,15 +35,21 @@ void _printstring(va_list args)
 	}
 		printf("(nil)");
 }
-
+/**
+ * _printchar - prints a number
+ * @args: a va_list
+ */
 void _printchar(va_list args)
 {
 	printf("%c", va_arg(args, int));
 }
+/**
+ * _printall - prints a number
+ * @format: formatting string
+ */
 void print_all(const char * const format, ...)
 {
 	va_list args;
-	va_start(args, format);
 	int i = 0, j = 0;
 	char *sep = "";
 	Match match[] = {
@@ -45,7 +60,10 @@ void print_all(const char * const format, ...)
 		{NULL, NULL}
 	};
 
-	
+	va_start(args, format);
+	if (!format)
+		return;
+
 	while (format[i] != 0)
 	{
 		j = 0;
