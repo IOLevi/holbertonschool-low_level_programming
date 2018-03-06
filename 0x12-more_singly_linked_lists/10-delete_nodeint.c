@@ -14,7 +14,7 @@ int delete_nodeint_at_index(listint_t **head, unsigned int index)
 	if (!*head)
 		return (-1);
 
-	ptr = *head; 
+	ptr = *head;
 
 	/*deletefrommiddle*/
 
@@ -25,8 +25,8 @@ int delete_nodeint_at_index(listint_t **head, unsigned int index)
 			return (-1);
 	}
 	ptrtodelete = hptr->next;
-	hptr = ptrtodelete->next; 
+	hptr = ptrtodelete->next;
 	free(ptrtodelete);
 
-	return (1); 
+	return (1);
 }

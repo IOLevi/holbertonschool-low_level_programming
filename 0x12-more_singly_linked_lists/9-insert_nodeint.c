@@ -17,7 +17,7 @@ listint_t *insert_nodeint_at_index(listint_t **head, unsigned int idx, int n)
 		return (NULL);
 	lev->n = n;
 	lev->next = NULL;
-	hptr = *head; 
+	hptr = *head;
 
 	/*empty list */
 	if (hptr == NULL)
@@ -32,7 +32,7 @@ listint_t *insert_nodeint_at_index(listint_t **head, unsigned int idx, int n)
 	{
 		*head = lev;
 		*head->next = hptr;
-		return (lev);	
+		return (lev);
 	}
 
 	/*insertmiddleORend*/
