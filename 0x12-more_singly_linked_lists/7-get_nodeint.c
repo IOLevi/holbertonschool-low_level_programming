@@ -21,11 +21,6 @@ listint_t *get_nodeint_at_index(listint_t *head, unsigned int index)
 		hptr = hptr->next;
 	}
 
-	if (hptr)
-	{
-		return (hptr);
-	}
-
-	return (NULL);
+	return (hptr);
 
 }
