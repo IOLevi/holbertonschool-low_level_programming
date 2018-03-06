@@ -11,6 +11,10 @@ listint_t *get_nodeint_at_index(listint_t *head, unsigned int index)
 	unsigned int i;
 	listint_t *hptr;
 
+
+	if (!head)
+		return (NULL);
+
 	hptr = head;
 	for (i = 0; i < index; i++)
 	{
