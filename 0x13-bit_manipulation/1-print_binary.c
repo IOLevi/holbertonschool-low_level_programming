@@ -9,7 +9,7 @@ void print_binary(unsigned long int n)
 	unsigned long int mask;
 	int hit = 0;
 
-	mask = 1 << 20;
+	mask = 1UL << sizeof(mask) * 8 - 1;
 	if (n == 0)
 		_putchar('0');
 
