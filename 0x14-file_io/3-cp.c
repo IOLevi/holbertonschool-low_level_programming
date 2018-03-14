@@ -56,20 +56,20 @@ int main(int argc, char *argv[])
 	if (fdto == -1)
 		fdto = open(argv[2], O_WRONLY | O_CREAT | O_TRUNC);
 	if (fdto == -1)
-		exit(99, argv[2], 0);
+		error(99, argv[2], 0);
 	while ((readeval = read(fdfrom, &buf, 1024)) != 0)
 	{
 		if (readeval == -1)
-			exit(98, argv[1], 0);
+			error(98, argv[1], 0);
 
 		writeeval = write(fdto, &buf, readeval);
 		if (writeeval == -1)
-			exit(99, argv[2], 0);
+			error(99, argv[2], 0);
 	}
 	close1 = (fdto);
 	close2 = (fdfrom);
 	if (close1 == -1)
-		exit(100, "", fdto);
+		error(100, "", fdto);
 	if (close2 == -1)
 		error(100, "", fdfrom);
 	return (0);
