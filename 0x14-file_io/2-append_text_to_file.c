@@ -15,18 +15,17 @@ int append_text_to_file(const char *filename, char *text_content)
 		return (-1);
 
 	fd = open(filename, O_WRONLY | O_APPEND);
-	
-	/* If file already existed or failed to create */
+
 	if (fd == -1)
-	{	
+	{
 		return (-1);
 	}
-	
+
 	if (text_content)
 	{
 		while (text_content[i] != 0)
 			i++;
-		
+
 		test = write(fd, text_content, i);
 
 		if (test < 1)
