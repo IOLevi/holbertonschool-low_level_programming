@@ -1,5 +1,45 @@
 #include "holberton.h"
 
+/**
+ * error - does error handling for cp clone
+ * @num: exit number
+ * @s: argv string
+ * @fd: file descriptor number
+ */
+void error(int num, char *s, int fd)
+{
+
+	switch (num)
+	{
+		case (97):
+			dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
+			exit(97);
+			break;
+		case (98):
+			dprintf(STDERR_FILENO, "Error: Can't read from %s\n", s);
+			exit(98);
+			break;
+		case (99):
+
+			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", s);
+			exit(99);
+			break;
+		case (100):
+			dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd);
+			break;
+		default:
+			return;
+	}
+
+
+}
+
+/**
+ * main - implements cp functionary
+ * @argc: number of arguments
+ * @argv: vector to strings
+ * Return: 0
+ */
 int main(int argc, char *argv[])
 {
 	char buf[1024];
@@ -8,49 +48,29 @@ int main(int argc, char *argv[])
 	ssize_t readeval;
 
 	if (argc != 3)
-	{
-		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
-		exit(97);
-	}
-
+		error(97, "", 0);
 	fdfrom = open(argv[1], O_RDONLY);
 	if (fdfrom == -1)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't read from %s\n", argv[1]);
-		exit(98);
-	}
-
-	fdto = open(argv[2], O_WRONLY | O_CREAT | O_EXCL, 066666664);
+		error(98, argv[1], 0);
+	fdto = open(argv[2], O_WRONLY | O_CREAT | O_EXCL, 0664);
 	if (fdto == -1)
 		fdto = open(argv[2], O_WRONLY | O_CREAT | O_TRUNC);
 	if (fdto == -1)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
-		exit(99);
-	}
-	/*read 1024 bytes at a time */
+		exit(99, argv[2], 0);
 	while ((readeval = read(fdfrom, &buf, 1024)) != 0)
 	{
+		if (readeval == -1)
+			exit(98, argv[1], 0);
+
 		writeeval = write(fdto, &buf, readeval);
-		if (writeeval != readeval)
-		{
-			exit(99);
-		}
-
+		if (writeeval == -1)
+			exit(99, argv[2], 0);
 	}
-
 	close1 = (fdto);
 	close2 = (fdfrom);
 	if (close1 == -1)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fdto);
-		exit(100);
-	}
+		exit(100, "", fdto);
 	if (close2 == -1)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fdfrom);
-		exit(100);
-	}
-
+		error(100, "", fdfrom);
 	return (0);
 }
