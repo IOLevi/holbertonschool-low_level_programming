@@ -15,7 +15,7 @@ void error(int num, char *s, int fd)
 			exit(97);
 			break;
 		case (98):
-			dprintf(STDERR_FILENO, "Error: Can't read from %s\n", s);
+			dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", s);
 			exit(98);
 			break;
 		case (99):
