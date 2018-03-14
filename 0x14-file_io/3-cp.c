@@ -8,7 +8,6 @@
  */
 void error(int num, char *s, int fd)
 {
-
 	switch (num)
 	{
 		case (97):
@@ -26,6 +25,7 @@ void error(int num, char *s, int fd)
 			break;
 		case (100):
 			dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd);
+			exit(100);
 			break;
 		default:
 			return;
@@ -44,8 +44,8 @@ int main(int argc, char *argv[])
 {
 	char buf[1024];
 	int fdfrom, fdto, close1, close2;
-	ssize_t writeeval;
-	ssize_t readeval;
+	int writeeval;
+	int readeval;
 
 	if (argc != 3)
 		error(97, "", 0);
@@ -66,8 +66,10 @@ int main(int argc, char *argv[])
 		if (writeeval == -1)
 			error(99, argv[2], 0);
 	}
-	close1 = (fdto);
-	close2 = (fdfrom);
+	if (readeval == -1)
+		error(98, argv[1], 0);
+	close1 = close(fdto);
+	close2 = close(fdfrom);
 	if (close1 == -1)
 		error(100, "", fdto);
 	if (close2 == -1)
