@@ -1,5 +1,5 @@
 #include "lists.h"
-
+#include "1-dlistint_len.c"
 /**
  * delete_dnodeint_at_index - deletes a node at index of a dlinked list
  * @head: head of a dlinked list
@@ -9,33 +9,33 @@
 int delete_dnodeint_at_index(dlistint_t **head, unsigned int index)
 {
 	dlistint_t *hpointer;
-	size_t len;
-	int i;
+	unsigned int len;
+	unsigned int i;
 
-	len = dlistint_len(*h);
+	len = dlistint_len(*head);
 	hpointer = *head;
 
 	/* empty list */
 	if (!*head)
 		return (-1);
-	
+
 	/*delete first item, move head */
 	if (index == 0)
 	{
 		if (hpointer->next)
-			hpointer->next->previous = NULL;
+			hpointer->next->prev = NULL;
 		*head = hpointer->next;
 		free(hpointer);
 		return (1);
 	}
 
 	/*delete at end of the list */
-	if (index == len -1)
+	if (index == len - 1)
 	{
-		for (i = 0, i < index; i++)
+		for (i = 0; i < index; i++)
 			hpointer = hpointer->next;
-		
-		hpointer->previous->next = NULL;
+
+		hpointer->prev->next = NULL;
 		free(hpointer);
 		return (1);
 	}
@@ -51,10 +51,9 @@ int delete_dnodeint_at_index(dlistint_t **head, unsigned int index)
 	{
 		hpointer = hpointer->next;
 	}
-	// 0 1 2 3 4 (delete index 1, hpointer will be at 1)
 	hpointer->prev->next = hpointer->next;
 	hpointer->next->prev = hpointer->prev;
 	free(hpointer);
-	return(1);
-	
+	return (1);
+
 }
