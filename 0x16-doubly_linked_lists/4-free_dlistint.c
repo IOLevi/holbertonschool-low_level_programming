@@ -9,7 +9,7 @@ void free_dlistint(dlistint_t *head)
 	dlistint_t *hpointer;
 	if (!head)
 		return;
-	
+
 	hpointer = head;
 
 	while(head)
