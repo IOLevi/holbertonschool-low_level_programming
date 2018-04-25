@@ -63,7 +63,7 @@ int main(int argc, char **argv)
 
 		while (p[i].opcode != NULL)
 		{
-			if (strcmp(command, p[0].opcode) == 0)
+			if (strcmp(command, p[i].opcode) == 0)
 			{
 				p[i].f(&head, line_number);
 				break;
