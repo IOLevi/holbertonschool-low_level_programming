@@ -10,26 +10,6 @@ char *n = NULL;
  *
  * Return: positive if s1 is bigger, 0 if they are the same, otherwise negative
  */
-int _strcmp(char *s1, char *s2)
-{
-	int i = 0;
-	printf("INSIDE HERE\n");
-	while (s1[i] != '\0' && s2[i] != '\0')
-	{
-			printf("%c %c\n", s1[i], s2[i]);
-
-		if (s1[i] != s2[i])
-			printf("INSIDE HERE3\n");
-
-			return (s1[i] - s2[i]);
-		i++;
-	}
-		printf("INSIDE HERE4\n");
-
-	if (s1[i] == '\0' && s2[i] == '\0')
-		return (0);
-	return (-1);
-}
 int main(int argc, char **argv)
 {
 
@@ -40,24 +20,20 @@ int main(int argc, char **argv)
 	int i;
 	char *strinput;
 	instruction_t p[7];
-	char *tokens[2];
+	char *command;
+	char *argument;
 	stack_t *head;
 
 	initialize_instructions(p);
-	printf("opcode %s\n", p[0].opcode);
 	head = NULL;
-	printf("HI1\n");
-
+	
 	if (argc != 2)
 	{
 		printf("USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 
 	}
-	printf("HI3\n");
-
 	fd = fopen(argv[1], "r");
-	printf("HI4\n");
 
 	if (fd == NULL)
 	{
@@ -67,46 +43,32 @@ int main(int argc, char **argv)
 	}
 	//push, pall, pint, pop, swap, add, nop
 	line_number = 0;
-	printf("HI5\n");
 	while (getline(&strinput, &len, fd) != -1)
 	{
-		printf("HI6\n");
 		line_number++;
-		printf("the line %s", strinput);
 		//get first token (the command)
-		tokens[0] = strtok(strinput, DELIM);
-		printf("Hi6.5\n");
+		command = strtok(strinput, DELIM);
 		//store all the tokens in a char array first
-		
 		//skip empty lines
-		if (tokens[0] == NULL)
+		if (command == NULL)
 		{
-			printf("PROBLEM!!!\n");
 			free(strinput);
 			continue;
 		}
-			
 
 		//get command argument
-		tokens[1] = strtok(NULL, DELIM);
-		printf("HI6.6\n");
-		n = tokens[1];
-		printf("HI6.7\n");
+		argument = strtok(NULL, DELIM);
+		n = argument;
 		i = 0;
-		printf("token 0 %s\n", tokens[0]);
+
 		while (p[i].opcode != NULL)
 		{
-			printf("hi6.8\n");
-			printf("%d\n", i);
-			printf("opcode %s token %s\n", p[i].opcode, tokens[0]);
-			if (_strcmp(tokens[0], p[i].opcode) == 0)
+			if (strcmp(command, p[0].opcode) == 0)
 			{
-				printf("HI7");
 				p[i].f(&head, line_number);
 				break;
 			}
 			i++;
-
 		}
 		n = NULL; //TODO: do i need this
 		free(strinput);
@@ -114,14 +76,12 @@ int main(int argc, char **argv)
 	//free dkist
 	//fclose
 	fclose(fd);
-	printf("ENDING!\n");
 	return (0);
 	 
 }
 
 void initialize_instructions(instruction_t p[])
 {
-	printf("hi\n");
 	p[0].opcode = "push";
 	p[0].f = _push;
 
