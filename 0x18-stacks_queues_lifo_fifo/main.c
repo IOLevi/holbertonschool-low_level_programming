@@ -254,14 +254,51 @@ void _swap(stack_t **head, unsigned int line_number)
 	//list of length 2
 	if (hpointer->next->next == NULL)
 	{
-		//swap
-
+		hpointer->next->next = hpointer;
+		hpointer->next->prev = NULL;
+		hpointer->prev = hpointer->next; 
+		hpointer->next = NULL;
+		return;
 	}
+	//longer than 2
+	while (hpointer->next->next != NULL)
+		hpointer = hpointer->next;
+
+	
+	hpointer->next->next = hpointer;
+	hpointer->next->prev = hpointer->prev;
+	hpointer->prev = hpointer->next; 
+	hpointer->next = NULL;
 }
 
 void _add(stack_t **head, unsigned int line_number)
 {
-	;
+	stack_t *hpointer;
+	int sum;
+
+	if (!head || !*head || (*head)->next == NULL)
+	{
+		printf("L%d: can't swap, stack too short\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	
+	hpointer = *head;
+	//list of length 2
+	if (hpointer->next->next == NULL)
+	{
+		sum = hpointer->n + hpointer->next->n;
+		hpointer->n = sum;
+		_pop(head, line_number);		
+		return;
+	}
+
+	//longer than 2
+	while (hpointer->next->next != NULL)
+		hpointer = hpointer->next;
+
+	sum = hpointer->n + hpointer->next->n;
+	hpointer->n = sum;
+	_pop(head, line_number);
 }
 
 void _nop(stack_t **head, unsigned int line_number)
