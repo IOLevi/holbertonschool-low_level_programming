@@ -71,7 +71,6 @@ int main(int argc, char **argv)
 			i++;
 		}
 		n = NULL; //TODO: do i need this
-		free(strinput);
 	}
 	//free dkist
 	//fclose
@@ -153,7 +152,7 @@ void _push(stack_t **head, unsigned int line_number)
 	new->prev = NULL;
 
 	//empty list
-	if (*head != NULL)
+	if (*head == NULL)
 	{
 		*head = new;
 		return;
