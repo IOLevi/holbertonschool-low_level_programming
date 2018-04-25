@@ -10,6 +10,23 @@ char *n = NULL;
  *
  * Return: positive if s1 is bigger, 0 if they are the same, otherwise negative
  */
+
+void free_list(stack_t *head)
+{
+	stack_t *temp;
+
+	if (!head)
+		return;
+
+	while (head)
+	{
+		temp = head->next;
+		free(head);
+		head = temp;
+	}	
+
+
+}
 int main(int argc, char **argv)
 {
 
@@ -19,7 +36,7 @@ int main(int argc, char **argv)
 	unsigned int line_number;
 	int i;
 	char *strinput;
-	instruction_t p[7];
+	instruction_t p[8];
 	char *command;
 	char *argument;
 	stack_t *head;
@@ -75,7 +92,9 @@ int main(int argc, char **argv)
 	//free dkist
 	//fclose
 	fclose(fd);
-	return (0);
+	free_list(head);
+	return (EXIT_SUCCESS);
+
 	 
 }
 
@@ -115,10 +134,17 @@ void _pall(stack_t **head, unsigned int line_number)
 	
 	hpointer = *head;
 
+	while (hpointer->next)
+	{
+		hpointer = hpointer->next;
+	}
+
 	while (hpointer)
 	{
+		
 		printf("%d\n", hpointer->n);
-		hpointer = hpointer->next;
+		hpointer = hpointer->prev;
+
 	}
 }
 
@@ -170,18 +196,67 @@ void _push(stack_t **head, unsigned int line_number)
 
 void _pint(stack_t **head, unsigned int line_number)
 {
-	;
+	stack_t *hpointer;
+	if (!head || !*head)
+	{
+		printf("L%d: can't pint, stack empty\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	
+	hpointer = *head;
+	while (hpointer->next)
+		hpointer = hpointer->next;
+
+	printf("%d\n", hpointer->n);
 }
 
 
 void _pop(stack_t **head, unsigned int line_number)
 {
-	;
+	stack_t *hpointer;
+
+	//list of len 0
+	if (!head || !*head)
+	{
+		printf("L%d: can't pop an empty stack\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	
+	hpointer = *head;
+
+	//list of len 1
+	if (hpointer->next == NULL)
+	{
+		free(hpointer);
+		*head = NULL;
+		return;
+	}
+
+	//list of 2 or more
+	while (hpointer->next != NULL)
+		hpointer = hpointer->next;
+	
+	hpointer->prev->next = NULL;
+	free(hpointer);
+		
 }
 
 void _swap(stack_t **head, unsigned int line_number)
 {
-	;
+	stack_t *hpointer;
+
+	if (!head || !*head || (*head)->next == NULL)
+	{
+		printf("L%d: can't swap, stack too short\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	hpointer = *head;
+	//list of length 2
+	if (hpointer->next->next == NULL)
+	{
+		//swap
+
+	}
 }
 
 void _add(stack_t **head, unsigned int line_number)
