@@ -2,6 +2,34 @@
 
 char *n = NULL;
 //NOTE TO SELF: RUN "./a.out byte.m" exactly to get it to read the line
+
+/**
+ * _strcmp - compares two strings
+ * @s1: first operand
+ * @s2: second operand
+ *
+ * Return: positive if s1 is bigger, 0 if they are the same, otherwise negative
+ */
+int _strcmp(char *s1, char *s2)
+{
+	int i = 0;
+	printf("INSIDE HERE\n");
+	while (s1[i] != '\0' && s2[i] != '\0')
+	{
+			printf("%c %c\n", s1[i], s2[i]);
+
+		if (s1[i] != s2[i])
+			printf("INSIDE HERE3\n");
+
+			return (s1[i] - s2[i]);
+		i++;
+	}
+		printf("INSIDE HERE4\n");
+
+	if (s1[i] == '\0' && s2[i] == '\0')
+		return (0);
+	return (-1);
+}
 int main(int argc, char **argv)
 {
 
@@ -70,7 +98,8 @@ int main(int argc, char **argv)
 		{
 			printf("hi6.8\n");
 			printf("%d\n", i);
-			if (strcmp(tokens[0], p[i].opcode) == 0)
+			printf("opcode %s token %s\n", p[i].opcode, tokens[0]);
+			if (_strcmp(tokens[0], p[i].opcode) == 0)
 			{
 				printf("HI7");
 				p[i].f(&head, line_number);
