@@ -1,13 +1,13 @@
 #include "monty.h"
+
 char *n = NULL;
-
-
+//NOTE TO SELF: RUN "./a.out byte.m" exactly to get it to read the line
 int main(int argc, char **argv)
 {
 
-	int fd;
+	FILE *fd;
 	int readnum;
-	int len;
+	size_t len;
 	unsigned int line_number;
 	int i;
 	char *strinput;
@@ -16,7 +16,9 @@ int main(int argc, char **argv)
 	stack_t *head;
 
 	initialize_instructions(p);
+	printf("opcode %s\n", p[0].opcode);
 	head = NULL;
+	printf("HI1\n");
 
 	if (argc != 2)
 	{
@@ -24,38 +26,55 @@ int main(int argc, char **argv)
 		exit(EXIT_FAILURE);
 
 	}
+	printf("HI3\n");
 
-	fd = open(argv[1], O_RDONLY);
+	fd = fopen(argv[1], "r");
+	printf("HI4\n");
 
-	if (fd == -1)
+	if (fd == NULL)
 	{
 		printf("Error: Can't open file %s\n", argv[1]);
+		exit(EXIT_FAILURE);
 
 	}
 	//push, pall, pint, pop, swap, add, nop
-	linenumber = 0;
-	while((readnum = getline(&strinput, &len, fd)) != -1)
+	line_number = 0;
+	printf("HI5\n");
+	while (getline(&strinput, &len, fd) != -1)
 	{
+		printf("HI6\n");
 		line_number++;
+		printf("the line %s", strinput);
 		//get first token (the command)
 		tokens[0] = strtok(strinput, DELIM);
+		printf("Hi6.5\n");
 		//store all the tokens in a char array first
 		
 		//skip empty lines
 		if (tokens[0] == NULL)
+		{
+			printf("PROBLEM!!!\n");
+			free(strinput);
 			continue;
+		}
+			
 
 		//get command argument
 		tokens[1] = strtok(NULL, DELIM);
+		printf("HI6.6\n");
 		n = tokens[1];
+		printf("HI6.7\n");
 		i = 0;
+		printf("token 0 %s\n", tokens[0]);
 		while (p[i].opcode != NULL)
 		{
-			if ((strcmp(tokens[0], p[i].opcode) == 0))
+			printf("hi6.8\n");
+			printf("%d\n", i);
+			if (strcmp(tokens[0], p[i].opcode) == 0)
 			{
-				//error_check(tokens, line_number);
+				printf("HI7");
 				p[i].f(&head, line_number);
-
+				break;
 			}
 			i++;
 
@@ -64,12 +83,16 @@ int main(int argc, char **argv)
 		free(strinput);
 	}
 	//free dkist
+	//fclose
+	fclose(fd);
+	printf("ENDING!\n");
 	return (0);
 	 
 }
 
-void intialize_instructions(instruction_t p[])
+void initialize_instructions(instruction_t p[])
 {
+	printf("hi\n");
 	p[0].opcode = "push";
 	p[0].f = _push;
 
@@ -97,12 +120,18 @@ void intialize_instructions(instruction_t p[])
 
 void _pall(stack_t **head, unsigned int line_number)
 {
+	stack_t *hpointer;
+
 	if (!head || !*head)
 		return;
 	
-	_pall((*head)->next, n);
-	printf("%d\n", (*head)->n);
-	
+	hpointer = *head;
+
+	while (hpointer)
+	{
+		printf("%d\n", hpointer->n);
+		hpointer = hpointer->next;
+	}
 }
 
 void _push(stack_t **head, unsigned int line_number)
@@ -123,7 +152,12 @@ void _push(stack_t **head, unsigned int line_number)
 
 
 	new = malloc(sizeof(stack_t));
-	//TODO: account for malloc failure
+	if (!new)
+	{
+		printf("Error: malloc failed\n");
+		//TODO: free before exiting
+		exit(EXIT_FAILURE);
+	}
 
 	new->n = newn;
 	new->next = NULL;
@@ -145,4 +179,29 @@ void _push(stack_t **head, unsigned int line_number)
 	hpointer->next = new;
 	new->prev = hpointer;
 }
-/
+
+void _pint(stack_t **head, unsigned int line_number)
+{
+	;
+}
+
+
+void _pop(stack_t **head, unsigned int line_number)
+{
+	;
+}
+
+void _swap(stack_t **head, unsigned int line_number)
+{
+	;
+}
+
+void _add(stack_t **head, unsigned int line_number)
+{
+	;
+}
+
+void _nop(stack_t **head, unsigned int line_number)
+{
+	;
+}
