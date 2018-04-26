@@ -3,14 +3,6 @@
 char *n = NULL;
 //NOTE TO SELF: RUN "./a.out byte.m" exactly to get it to read the line
 
-/**
- * _strcmp - compares two strings
- * @s1: first operand
- * @s2: second operand
- *
- * Return: positive if s1 is bigger, 0 if they are the same, otherwise negative
- */
-
 void free_list(stack_t *head)
 {
 	stack_t *temp;
@@ -23,7 +15,7 @@ void free_list(stack_t *head)
 		temp = head->next;
 		free(head);
 		head = temp;
-	}	
+	}
 
 
 }
@@ -43,7 +35,7 @@ int main(int argc, char **argv)
 
 	initialize_instructions(p);
 	head = NULL;
-	
+
 	if (argc != 2)
 	{
 		printf("USAGE: monty file\n");
@@ -77,6 +69,9 @@ int main(int argc, char **argv)
 		argument = strtok(NULL, DELIM);
 		n = argument;
 		i = 0;
+		//check for comment
+		if (check_comment(command))
+			continue;
 
 		while (p[i].opcode != NULL)
 		{
@@ -95,7 +90,6 @@ int main(int argc, char **argv)
 	free_list(head);
 	return (EXIT_SUCCESS);
 
-	 
 }
 
 void initialize_instructions(instruction_t p[])
@@ -120,7 +114,7 @@ void initialize_instructions(instruction_t p[])
 
 	p[6].opcode = "nop";
 	p[6].f = _nop;
-	
+
 	p[7].opcode = NULL;
 	p[7].f = NULL;
 }
@@ -131,7 +125,7 @@ void _pall(stack_t **head, unsigned int line_number)
 
 	if (!head || !*head)
 		return;
-	
+
 	hpointer = *head;
 
 	while (hpointer->next)
@@ -141,7 +135,6 @@ void _pall(stack_t **head, unsigned int line_number)
 
 	while (hpointer)
 	{
-		
 		printf("%d\n", hpointer->n);
 		hpointer = hpointer->prev;
 
@@ -202,7 +195,7 @@ void _pint(stack_t **head, unsigned int line_number)
 		printf("L%d: can't pint, stack empty\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-	
+
 	hpointer = *head;
 	while (hpointer->next)
 		hpointer = hpointer->next;
@@ -221,7 +214,7 @@ void _pop(stack_t **head, unsigned int line_number)
 		printf("L%d: can't pop an empty stack\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-	
+
 	hpointer = *head;
 
 	//list of len 1
@@ -235,10 +228,10 @@ void _pop(stack_t **head, unsigned int line_number)
 	//list of 2 or more
 	while (hpointer->next != NULL)
 		hpointer = hpointer->next;
-	
+
 	hpointer->prev->next = NULL;
 	free(hpointer);
-		
+
 }
 
 void _swap(stack_t **head, unsigned int line_number)
@@ -256,7 +249,7 @@ void _swap(stack_t **head, unsigned int line_number)
 	{
 		hpointer->next->next = hpointer;
 		hpointer->next->prev = NULL;
-		hpointer->prev = hpointer->next; 
+		hpointer->prev = hpointer->next;
 		hpointer->next = NULL;
 		return;
 	}
@@ -264,10 +257,10 @@ void _swap(stack_t **head, unsigned int line_number)
 	while (hpointer->next->next != NULL)
 		hpointer = hpointer->next;
 
-	
+
 	hpointer->next->next = hpointer;
 	hpointer->next->prev = hpointer->prev;
-	hpointer->prev = hpointer->next; 
+	hpointer->prev = hpointer->next;
 	hpointer->next = NULL;
 }
 
@@ -281,14 +274,14 @@ void _add(stack_t **head, unsigned int line_number)
 		printf("L%d: can't swap, stack too short\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-	
+
 	hpointer = *head;
 	//list of length 2
 	if (hpointer->next->next == NULL)
 	{
 		sum = hpointer->n + hpointer->next->n;
 		hpointer->n = sum;
-		_pop(head, line_number);		
+		_pop(head, line_number);
 		return;
 	}
 
@@ -305,3 +298,164 @@ void _nop(stack_t **head, unsigned int line_number)
 {
 	;
 }
+
+void _sub(stack_t **head, unsigned int line_number)
+{
+	int sub;
+	stack_t *hpointer;
+
+	if (!head || !*head || (*head)->next == NULL)
+	{
+		printf("L%d: can't sub, stack too short\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	hpointer =*head;
+	while (hpointer->next->next != NULL)
+		hpointer = hpointer->next;
+	sub = hpointer->n - hpointer->next->n;
+	hpointer->n = sub;
+	_pop(head, line_number);
+
+}
+
+void _div(stack_t **head, unsigned int line_number)
+{
+	stack_t *hpointer;
+	int result;
+
+	if (!head || !*head || (*head)->next == NULL)
+	{
+		printf("L%d: can't div, stack too short\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+
+	hpointer = *head;
+	while (hpointer->next->next != NULL)
+		hpointer = hpointer->next;
+
+	if (hpointer->next->n == 0)
+	{
+		printf("L%d: division by zero\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+
+	result = hpointer->n / hpointer->next->n;
+	hpointer->n = result;
+	_pop(head, line_number);
+}
+
+void _mul(stack_t **head, unsigned int line_number)
+{
+	stack_t *hpointer;
+	int result;
+
+	if (!head || !*head || (*head)->next == NULL)
+	{
+		printf("L%d: can't mul, stack too short\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+
+	hpointer = *head;
+	while (hpointer->next->next != NULL)
+		hpointer = hpointer->next;
+
+	result = hpointer->next->n * hpointer->n;
+	hpointer->n = result;
+	_pop(head, line_number);
+}
+
+void _mod(stack_t **head, unsigned int line_number)
+{
+	int result;
+	stack_t *hpointer;
+
+	if (!head || !*head || (*head)->next == NULL)
+	{
+		printf("L%d: can't mod, stack too short\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+
+	hpointer = *head;
+	while (hpointer->next->next != NULL)
+		hpointer = hpointer->next;
+
+	if (hpointer->next->n == 0)
+	{
+		printf("L%d: division by zero\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+
+	result = hpointer->n % hpointer->next->n;
+	hpointer->n = result;
+	_pop(head, line_number);
+}
+/**
+ * check_comment - checks to see if the first comment is a #
+ * @s: the command string
+ * Return: 1 if yes; 0 if no
+ */
+int check_comment(char *s)
+{
+	if (s[0] == '#')
+		return (1);
+	else
+		return (0);
+}
+void _pchar(stack_t **head, unsigned int line_number)
+{
+	stack_t *hpointer;
+
+	if (!head || !*head)
+	{
+		printf("L%d: can't pchar, value out of range\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+
+	hpointer = *head;
+
+	while (hpointer->next != NULL)
+		hpointer = hpointer->next;
+
+	if (hpointer->n < 0 || hpointer->n > 127)
+	{
+		printf("L%d: can't pchar, value out of range\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	putchar(hpointer->n);
+}
+
+void _pstr(stack_t **head, unsigned int line_number)
+{
+	stack_t *hpointer;
+
+	if (!head || !*head)
+	{
+		print("\n");
+		return;
+	}
+
+	hpointer = *head;
+
+	while (hpointer->next != NULL)
+		hpointer = hpointer->next;
+
+	while (hpointer != NULL && hpointer->n != 0)
+	{
+		if (hpointer->n >= 0 || hpointer->n <= 127)
+			putchar(hpointer->n);
+		else
+			break;
+
+		hpointer = hpointer->prev;
+	}
+	putchar('\n');
+}
+
+
+
+
+
+
+
+
+
