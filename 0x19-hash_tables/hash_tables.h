@@ -1,5 +1,5 @@
 #ifndef CESTLAVIE
-#define
+#define CESTLAVIE
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
