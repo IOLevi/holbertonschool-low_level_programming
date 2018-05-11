@@ -13,12 +13,13 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	hash_node_t *new;
 	hash_node_t *temp;
 
-	ki = key_index(key, ht->size);
+	ki = key_index((const unsigned char *)key, ht->size);
 	
+
 	new = malloc(sizeof(hash_node_t));
 	if (!new)
 		return (0);
-	
+
 	if (!key)
 		return (0);
 
@@ -32,17 +33,13 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	if (ht->array[ki] == NULL)
 	{
 		ht->array[ki] = new;
-		return (1); 
+		return (1);
 
 	}
-	/*may need to replace this with bumping to front
-	new->next = ht->array[ki];
-	temp = new->next;
-	ht->array[ki] = new; */
 	temp = ht->array[ki]; /*assign head of linked list to temp */
-	while (temp->next != NULL)
-		temp = temp->next;
+	
+	new->next = temp;
+	ht->array[ki] = new;
 
-	temp->next = new;
 	return (1);
 }
