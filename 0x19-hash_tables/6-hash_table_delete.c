@@ -16,9 +16,12 @@ void hash_table_delete(hash_table_t *ht)
 		while (temp)
 		{
 			next = temp->next;
+			free(temp->key);
+			free(temp->value);
 			free(temp);
 			temp = next;
 		}
 	}
+	free(ht->array);
 	free(ht);
 }

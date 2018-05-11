@@ -10,6 +10,12 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	new = malloc(sizeof(hash_node_t));
 	if (!new)
 		return (0);
+	
+	if (!key)
+		return (0);
+
+	if (!value)
+		return (0); //do I want this?
 
 	new->key = strdup(key);
 	new->value = strdup(value);
@@ -21,6 +27,10 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 		return (1); 
 
 	}
+	//may need to replace this with bumping to front
+	//new->next = ht->array[ki];
+	// temp = new->next;
+	// ht->array[ki] = new;
 	temp = ht->array[ki]; /*assign head of linked list to temp */
 	while (temp->next != NULL)
 		temp = temp->next;
