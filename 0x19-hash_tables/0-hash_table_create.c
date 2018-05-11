@@ -3,7 +3,7 @@
 /**
  * hash_table_create - aergaegea
  * @size: gragrea
- * Return: gruehgera 
+ * Return: gruehgera
  */
 hash_table_t *hash_table_create(unsigned long int size)
 {
