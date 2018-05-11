@@ -2,7 +2,7 @@
 
 void hash_table_delete(hash_table_t *ht)
 {
-	int i;
+	unsigned long int i;
 	hash_node_t *temp;
 	hash_node_t *next;
 
