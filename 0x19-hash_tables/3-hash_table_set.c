@@ -1,4 +1,12 @@
 #include "hash_tables.h"
+
+/**
+ * hash_table_set - put a key value pair in the hash table
+ * @ht: the hash table
+ * @key: key
+ * @value: value
+ * Return: 0 if fail, 1 if success
+ */
 int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 {
 	unsigned long int ki;
@@ -15,7 +23,7 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 		return (0);
 
 	if (!value)
-		return (0); //do I want this?
+		return (0);
 
 	new->key = strdup(key);
 	new->value = strdup(value);
@@ -27,10 +35,10 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 		return (1); 
 
 	}
-	//may need to replace this with bumping to front
-	//new->next = ht->array[ki];
-	// temp = new->next;
-	// ht->array[ki] = new;
+	/*may need to replace this with bumping to front
+	new->next = ht->array[ki];
+	temp = new->next;
+	ht->array[ki] = new; */
 	temp = ht->array[ki]; /*assign head of linked list to temp */
 	while (temp->next != NULL)
 		temp = temp->next;
