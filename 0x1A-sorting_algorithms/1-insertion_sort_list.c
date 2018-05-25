@@ -3,61 +3,55 @@
 
 void insertion_sort_list(listint_t **list)
 {
+	listint_t *shead;
 	listint_t *uhead;
 	listint_t *ins;
 	listint_t *temp;
-	int counter;
-	int sublist;
 
-	/*check to make sure the list exists*/
-	if (!list)
+	if (!list || !(*list))
 		return;
 
-	/*check to make sure the first item is NOT null*/
-	if(!(*list))
-		return;
+	// sever the two lists
+	shead = *list;
+	uhead = shead->next;
+	shead->next = NULL;
 
-	/*uhead is a pointer to the unsorted portion (starts at 2nd element)*/
-	uhead = (*list)->next;
-
-	print_list(*list);
-	sublist = 1;
-	while(uhead)
+	while (uhead)
 	{
 		ins = uhead;
 		uhead = uhead->next;
-
-		temp = *list;
-		counter = 0;
-		while(temp && temp != ins) //enote check
+		temp = shead;
+		while (temp)
 		{
-			/*found spot to insert*/
+			//add to front
+			if (ins->n <= temp->n && ins->n <= shead->n)
+			{
+				ins->next = shead;
+				shead->prev = ins;
+				shead = ins;
+				break;
+			}
+			//add to middle
 			if (ins->n <= temp->n)
 			{
-				/*front swap*/
-				if (counter == 0)
-				{
-					*list = ins;
-					if (counter + 1 == sublist)
-						temp->next = uhead;
-					ins->next = temp;
-					temp->prev = ins;
-					break;
-				}	
-				else
-				{
-					if (counter + 1 == sublist)
-						temp->next = uhead;
-					temp->prev->next = ins;
-					ins->prev = temp->prev;
-					ins->next = temp;
-					temp->prev = ins;
-					break;
-				}
-			}	
+				temp->prev->next = ins;
+				ins->prev = temp->prev;
+				ins->next = temp;
+				temp->prev = ins;
+				break;
+
+			}
+
+			//larger than all the items in the list
+			if (temp->next == NULL)
+			{
+				temp->next = ins;
+				ins->prev = temp;
+				ins->next = NULL;
+				break;
+			}
 			temp = temp->next;
-			counter++;
 		}
-		sublist++;	
 	}
+	*list = shead;
 }
