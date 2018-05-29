@@ -12,67 +12,34 @@ void insertion_sort_list(listint_t **list)
 	if (!list || !(*list))
 		return;
 
-	// initialize to shead pointing to first item, uhead is the second
 	shead = *list;
 	uhead = shead->next;
-	//19, 12, 99, 71, 13, 52, 96, 73, 86, 7};
-	//13 19 58 52 71 73 86 96 7
 
-	//how about think of it like swapping
-	//if you are moving an item into the sorted portion
-	//you need to connect the thing before it and the thing after it from where it came from
-	//so long as the item isn't staying in place (i.e. being added to the end)
-	//can just add one more PRE pointer, since uhead was already the item after it
-	//and you just connect PRE and uhead
 	while (uhead)
 	{
 		ins = uhead;
 		uhead = uhead->next;
-		temp = shead;
 		pre = ins->prev;
-		while (temp && temp != ins)
+
+		// pp p i in q r
+		while (pre && pre->n > ins->n)
 		{
-			//add to front
-			if (ins->n <= shead->n)
-			{
-				//connect where it came from
-				pre->next = uhead;
-				if (uhead) //to prevent seg fault on the last swap when uhead is null
-					uhead->prev = pre;
+			//connect outside
+			pre->next = ins->next;
+			if (ins->next)
+				ins->next->prev = pre; //probably seg faults here on the outside
 
-				ins->next = shead;
-				shead->prev = ins;
-				shead = ins;
-				printf("adding %d in front of %d\n", ins->n, ins->next->n);
-				print_list(shead);
-				break;
-			}
-			//add to middle
-			if (ins->n <= temp->n)
-			{
-				//connect gap
-				pre->next = uhead;
-				uhead->prev = pre;
+			ins->next = pre;
+			if (pre->prev)
+				pre->prev->next = ins;
+			ins->prev = pre->prev;
+			pre->prev = ins;
+			pre = ins->prev;
 
-				temp->prev->next = ins;
-				ins->prev = temp->prev;
-				ins->next = temp;
-				temp->prev = ins;
-				printf("adding %d inbetween %d and %d\n", ins->n, temp->prev->prev->n, temp->n);
-				print_list(shead);
-				break;
-
-			}
-
-			//larger than all the items in the list
-			if (temp->next == ins)
-			{
-				printf("%d staying in place ahead of %d\n", ins->n, temp->n);
-				print_list(shead);
-				break;
-			}
-			temp = temp->next;
+			if (pre == NULL)
+				*list = ins;
+			print_list(*list);
 		}
+
 	}
-	*list = shead;
 }
