@@ -9,7 +9,6 @@ void insertion_sort_list(listint_t **list)
 	listint_t *shead;
 	listint_t *uhead;
 	listint_t *ins;
-	listint_t *temp;
 	listint_t *pre;
 
 	if (!list || !(*list))
