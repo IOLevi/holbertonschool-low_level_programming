@@ -1,4 +1,5 @@
 #include "sort.h"
+#include <stdio.h>
 
 /**
  * partition - returns a partition
@@ -16,27 +17,30 @@ size_t partition(int *A, int lo, int hi, size_t size)
 	int i;
 
 	pivot = A[hi];
-	i = lo - 1;
-
+	i = lo;
 	for (j = lo; j < hi; j++)
 	{
-		if (A[j] <= pivot)
+		if (A[j] < pivot)
 		{
+			if (i != j)
+			{
+				temp = A[i];
+				A[i] = A[j];
+				A[j] = temp;
+				print_array(A, size);
+			}
+
 			i++;
-			temp = A[i];
-			A[i] = A[j];
-			A[j] = temp;
-
 		}
-
-
 	}
-	temp = A[i + 1];
-	A[i + 1] = A[hi];
-	A[hi] = temp;
-	print_array(A, size);
-
-	return (i + 1);
+	if (i != hi)
+	{
+		temp = A[i];
+		A[i] = A[hi];
+		A[hi] = temp;
+		print_array(A, size);
+	}
+	return (i);
 }
 
 /**
@@ -56,7 +60,6 @@ void qs(int *A, int lo, int hi, size_t size)
 		qs(A, lo, p - 1, size);
 		qs(A, p + 1, hi, size);
 	}
-
 }
 
 /**
@@ -68,3 +71,4 @@ void quick_sort(int *array, size_t size)
 {
 	qs(array, 0, size - 1, size);
 }
+
