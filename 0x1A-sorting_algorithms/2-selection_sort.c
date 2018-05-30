@@ -1,5 +1,10 @@
 #include "sort.h"
 
+/**
+ * selection_sort - sorts an array with selection sort
+ * @array: the array
+ * @size: the size of the array
+ */
 void selection_sort(int *array, size_t size)
 {
 	size_t i;
@@ -10,10 +15,8 @@ void selection_sort(int *array, size_t size)
 	int temp;
 
 	smallest = array[0];
-	//outer loop of size n
 	for (i = 0; i < size; i++)
 	{
-		//find the smallest in the unsorted set
 		smallest = array[i];
 		idxsmall = i;
 		for (j = i; j < size; j++)
@@ -25,7 +28,6 @@ void selection_sort(int *array, size_t size)
 			}
 		}
 
-		//swap array[idxsmall] with array[i]
 		temp = array[i];
 		array[i] = array[idxsmall];
 		array[idxsmall] = temp;

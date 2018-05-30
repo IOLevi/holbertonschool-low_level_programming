@@ -1,6 +1,9 @@
 #include "sort.h"
 
-
+/**
+ * insertion_sort_list - sorts a double linked link with insertion
+ * @list: double pointer to dlist
+ */
 void insertion_sort_list(listint_t **list)
 {
 	listint_t *shead;
@@ -21,13 +24,11 @@ void insertion_sort_list(listint_t **list)
 		uhead = uhead->next;
 		pre = ins->prev;
 
-		// pp p i in q r
 		while (pre && pre->n > ins->n)
 		{
-			//connect outside
 			pre->next = ins->next;
 			if (ins->next)
-				ins->next->prev = pre; //probably seg faults here on the outside
+				ins->next->prev = pre;
 
 			ins->next = pre;
 			if (pre->prev)

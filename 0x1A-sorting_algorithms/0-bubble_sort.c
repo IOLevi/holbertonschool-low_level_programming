@@ -13,7 +13,7 @@ void swap(int *A, size_t x, size_t y)
 	temp = A[x];
 	A[x] = A[y];
 	A[y] = temp;
-}	
+}
 
 /**
  * bubble_sort - sorts an array of ints in ascending order (bubble)
@@ -25,8 +25,9 @@ void bubble_sort(int *array, size_t size)
 	size_t i;
 	size_t swapped;
 
-	do 
-	{
+	if (!array || size == 0)
+		return;
+	do {
 		swapped = 0;
 		for (i = 1; i < size; i++)
 		{
