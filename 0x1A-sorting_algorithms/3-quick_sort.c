@@ -20,7 +20,7 @@ size_t partition(int *A, int lo, int hi, size_t size)
 	i = lo;
 	for (j = lo; j < hi; j++)
 	{
-		if (A[j] < pivot)
+		if (A[j] <= pivot)
 		{
 			if (i != j)
 			{
