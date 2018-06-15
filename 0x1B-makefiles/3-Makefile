@@ -16,6 +16,8 @@ oclean:
 fclean:
 	$(RM) *~ $(NAME)
 	$(RM) $(OBJ)
-re: 
-	make oclean
-	make all
+re: $(OBJ) 
+	$(RM) $(OBJ)
+	$(CC) $(SRC) -o $(NAME)
+
+	
