@@ -1,0 +1,20 @@
+CC = gcc
+SRC = main.c holberton.c
+OBJ = $(SRC: .c=.o)
+NAME = holberton
+RM = rm -f
+
+all: $(OBJ)
+	$(CC) $(OBJ) -o $(NAME)
+
+clean:
+	$(RM) holberton *~ \#*\#
+
+oclean:
+	$(RM) $(OBJ)
+
+fclean:
+	$(RM) holberton $(OBJ) \#*\#
+re: 
+	make -f 3-Makefile clean
+	make -f 3-Makefile
