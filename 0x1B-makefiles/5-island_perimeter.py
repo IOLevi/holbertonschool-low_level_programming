@@ -11,13 +11,13 @@ def checkPerim(grid, row, col):
     total = 0
     for v in border.values():
         total += 1 if v == 0 else 0
-    if border['left'] == 0:
-        if grid[row - 1][col - 1] == 1 or grid[row + 1][col - 1] == 1:
-            total -= 1
+#    if border['left'] == 0:
+ #       if grid[row - 1][col - 1] == 1 or grid[row + 1][col - 1] == 1:
+  #          total -= 1
 
-    if border['right'] == 0:
-        if grid[row + 1][col + 1] == 1 or grid[row - 1][col + 1] == 1:
-            total -= 1
+   # if border['right'] == 0:
+    #    if grid[row + 1][col + 1] == 1 or grid[row - 1][col + 1] == 1:
+     #       total -= 1
 
     return total
 
