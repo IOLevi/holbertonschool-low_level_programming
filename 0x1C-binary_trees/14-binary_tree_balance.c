@@ -1,5 +1,11 @@
 #include "binary_trees.h"
 
+/**
+ * bth - recursion to measure the balance factor of a binary tree
+ * @tree: pointer to node
+ * @counter: counter
+ * Return: balance factor
+ */
 int bth(const binary_tree_t *tree, int counter)
 {
 	int counterr, counterl;
@@ -17,8 +23,6 @@ int bth(const binary_tree_t *tree, int counter)
 			return (counterr);
 	}
 	return (counter);
-
-
 }
 
 /**

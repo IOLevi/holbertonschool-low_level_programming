@@ -1,5 +1,11 @@
 #include "binary_trees.h"
 
+/**
+ * bt - recursion to check if a binary tree is full
+ * @tree: pointer to a node
+ * @val: value to store
+ * Return: 1 if tree is full
+ */
 int bt(const binary_tree_t *tree, int val)
 {
 	int left, right;

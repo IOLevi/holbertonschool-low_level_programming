@@ -2,7 +2,6 @@
 #include "14-binary_tree_balance.c"
 #include "15-binary_tree_is_full.c"
 
-
 /**
  * binary_tree_is_perfect - checks if a binary tree is perfect
  * @tree: pointer to the root node of tree to check
