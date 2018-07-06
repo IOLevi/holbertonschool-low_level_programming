@@ -1,12 +1,12 @@
 #include "binary_trees.h"
 
 /**
- * bt - recursion of the bt
+ * btq - recursion of the bt
  * @tree: tree
  * @counter: counter
  * Return: the counter
  */
-size_t bt(const binary_tree_t *tree, size_t counter)
+size_t btq(const binary_tree_t *tree, size_t counter)
 {
 	size_t counterr, counterl;
 
