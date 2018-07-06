@@ -27,10 +27,10 @@ size_t bt_recursive(const binary_tree_t *tree, size_t leaf)
 size_t binary_tree_leaves(const binary_tree_t *tree)
 {
 	size_t leaf;
-	
+
 	leaf = 0;
 	if (!tree)
 		return (0);
-	
+
 	return (bt_recursive(tree, leaf));
 }

@@ -8,7 +8,6 @@
 void binary_tree_preorder(const binary_tree_t *tree, void (*func)(int))
 {
 
-	/*preorder traversal: root node first; traverse left subtree; traverse right sub*/
 	if (!tree || !func)
 		return;
 

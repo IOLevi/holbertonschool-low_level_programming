@@ -27,7 +27,7 @@ size_t bt_recursive(const binary_tree_t *tree, size_t counter)
 size_t binary_tree_size(const binary_tree_t *tree)
 {
 	size_t counter;
-	
+
 	counter = 0;
 	if (!tree)
 		return (0);
